@@ -6,9 +6,7 @@ Star Wars Android is a project that uses a modern approach to Android applicatio
 and the latest tech-stack.
 
 Views:
-- Splash with logo
-- Recipes list with search field
-- Recipe details
+- Work in progress
 
 ## Architecture
 Clean Architecture with MVVM using Repository Pattern
