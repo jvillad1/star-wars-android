@@ -1,4 +1,4 @@
-# star-wars-android
+# Star Wars Android
 Star Wars Android Application for fun!
 
 ## Description
