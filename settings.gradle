@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "Star Wars Application"
+rootProject.name = "star-wars-android"
