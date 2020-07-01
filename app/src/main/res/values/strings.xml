@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Star Wars Application</string>
+    <!-- App Name -->
+    <string name="app_name">Star Wars App</string>
 </resources>
