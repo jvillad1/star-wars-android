@@ -1,4 +1,8 @@
 <resources>
     <!-- App Name -->
     <string name="app_name">Star Wars App</string>
+
+    <!-- Search View -->
+    <string name="character_search_hint">Luke Skywalker</string>
+    <string name="character_search_no_results_title">We can\'t find what you\'re looking for</string>
 </resources>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Margin/Padding -->
+    <dimen name="margin_xx_small">2dp</dimen>
+    <dimen name="margin_x_small">4dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">12dp</dimen>
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_large">20dp</dimen>
+    <dimen name="margin_x_large">24dp</dimen>
+    <dimen name="margin_xx_large">32dp</dimen>
+    <dimen name="margin_xxx_large">40dp</dimen>
+    <dimen name="margin_xxxx_large">56dp</dimen>
+
+    <!-- Divider -->
+    <dimen name="divider_normal_size">1dp</dimen>
+
+    <!-- Font Size -->
+    <dimen name="heading_text_size">26sp</dimen>
+    <dimen name="default_button_text_size">16sp</dimen>
+    <dimen name="normal_text_size">15sp</dimen>
+    <dimen name="medium_text_size">13sp</dimen>
+    <dimen name="small_text_size">11sp</dimen>
+
+    <!-- SearchView -->
+    <dimen name="search_view_height">42dp</dimen>
+
+    <!-- CardView -->
+    <dimen name="card_elevation">4dp</dimen>
+    <dimen name="card_corner_radius">4dp</dimen>
+
+    <!-- List Item -->
+    <dimen name="list_item_icon_height">24dp</dimen>
+
+</resources>

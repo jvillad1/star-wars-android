@@ -1,10 +1,14 @@
 <resources>
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Colors. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+
+    <!-- SearchView Style -->
+    <style name="SearchView" parent="Widget.AppCompat.SearchView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/search_view_height</item>
+        <item name="android:background">@android:color/white</item>
+        <item name="android:fontFamily">@font/open_sans_regular</item>
+        <item name="android:textSize">@dimen/medium_text_size</item>
+        <item name="android:editTextColor">@color/colorPrimaryText</item>
+        <item name="android:textColorHint">@color/colorSecondaryText</item>
     </style>
 
 </resources>

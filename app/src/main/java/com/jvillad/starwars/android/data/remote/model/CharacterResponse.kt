@@ -15,13 +15,13 @@ data class CharacterResponse(
     @field:Json(name = "mass")
     val mass: String,
     @field:Json(name = "hair_color")
-    val hair_color: String,
+    val hairColor: String,
     @field:Json(name = "skin_color")
-    val skin_color: String,
+    val skinColor: String,
     @field:Json(name = "eye_color")
-    val eye_color: String,
+    val eyeColor: String,
     @field:Json(name = "birth_year")
-    val birth_year: String,
+    val birthYear: String,
     @field:Json(name = "gender")
     val gender: String,
     @field:Json(name = "homeworld")
