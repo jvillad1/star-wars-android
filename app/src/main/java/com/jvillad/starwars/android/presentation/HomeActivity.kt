@@ -2,11 +2,11 @@ package com.jvillad.starwars.android.presentation
 
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.jvillad.starwars.android.R
 import com.jvillad.starwars.android.commons.extensions.observe
+import com.jvillad.starwars.android.commons.presentation.ui.BaseActivity
 import com.jvillad.starwars.android.presentation.search.state.SearchNavigationState
 import com.jvillad.starwars.android.presentation.search.viewmodel.SearchViewModel
 import timber.log.Timber
@@ -16,7 +16,8 @@ import timber.log.Timber
  *
  * @author juan.villada
  */
-class HomeActivity : AppCompatActivity(R.layout.activity_home) {
+
+class HomeActivity : BaseActivity(R.layout.activity_home) {
 
     // ViewModel
     private val searchViewModel by viewModels<SearchViewModel>()
