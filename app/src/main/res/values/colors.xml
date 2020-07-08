@@ -13,7 +13,7 @@
 
     <!-- UI colors -->
     <color name="colorDivider">#BDBDBD</color>
-    <color name="colorLightGray">#B3B3B3</color>
+    <color name="colorLightGray">#E3E3E3</color>
     <color name="colorGray">#999999</color>
 
 </resources>

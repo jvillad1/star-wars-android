@@ -4,5 +4,9 @@
 
     <!-- Search View -->
     <string name="character_search_hint">Luke Skywalker</string>
+    <string name="character_search_info_message">Use the search bar to find your favorite <b>Star Wars</b> Characters by name and learn more about them</string>
+    <string name="character_search_birth_year">Birth Year: %1$s</string>
+    <string name="character_search_gender">Gender: %1$s</string>
     <string name="character_search_no_results_title">We can\'t find what you\'re looking for</string>
+
 </resources>

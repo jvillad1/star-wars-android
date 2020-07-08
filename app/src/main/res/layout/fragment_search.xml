@@ -9,23 +9,12 @@
     <androidx.appcompat.widget.SearchView
         android:id="@+id/characterSearchView"
         style="@style/SearchView"
-        android:layout_marginTop="@dimen/margin_small"
         android:inputType="textCapWords"
         app:iconifiedByDefault="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:queryHint="@string/character_search_hint" />
-
-    <View
-        android:id="@+id/searchDivider"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/divider_normal_size"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:background="@color/colorDivider"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/characterSearchView" />
 
     <com.airbnb.epoxy.EpoxyRecyclerView
         android:id="@+id/charactersRecyclerView"
@@ -37,7 +26,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchDivider"
+        app:layout_constraintTop_toBottomOf="@id/characterSearchView"
         tools:listitem="@layout/item_character" />
 
     <ViewStub
@@ -46,20 +35,9 @@
         android:layout_height="0dp"
         android:inflatedId="@+id/layoutLoading"
         android:layout="@layout/layout_search_loading"
-        app:layout_constraintBottom_toBottomOf="@id/charactersRecyclerView"
-        app:layout_constraintEnd_toEndOf="@id/charactersRecyclerView"
-        app:layout_constraintStart_toStartOf="@id/charactersRecyclerView"
-        app:layout_constraintTop_toTopOf="@id/charactersRecyclerView" />
-
-    <ViewStub
-        android:id="@+id/emptyCharactersSearchViewStub"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:inflatedId="@+id/layoutEmptyCharactersSearch"
-        android:layout="@layout/layout_empty_characters_search"
-        app:layout_constraintBottom_toBottomOf="@id/charactersRecyclerView"
-        app:layout_constraintEnd_toEndOf="@id/charactersRecyclerView"
-        app:layout_constraintStart_toStartOf="@id/charactersRecyclerView"
-        app:layout_constraintTop_toTopOf="@id/charactersRecyclerView" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/characterSearchView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

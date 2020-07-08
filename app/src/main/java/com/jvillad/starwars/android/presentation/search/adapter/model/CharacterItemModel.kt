@@ -1,7 +1,7 @@
 package com.jvillad.starwars.android.presentation.search.adapter.model
 
+import android.content.Context
 import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
 import com.airbnb.epoxy.EpoxyAttribute
 import com.airbnb.epoxy.EpoxyHolder
@@ -27,22 +27,31 @@ abstract class CharacterItemModel : EpoxyModelWithHolder<CharacterHolder>() {
     @EpoxyAttribute
     lateinit var itemListener: CharacterItemListener
 
+    @ExperimentalStdlibApi
     override fun bind(holder: CharacterHolder) = with(holder) {
-        characterGenderTextView.text = characterUI.name
-        characterGenderTextView.text = characterUI.name
+        characterNameTextView.text = characterUI.name
+        characterBirthYearTextView.text = container.context.getString(R.string.character_search_birth_year, characterUI.birthYear)
+        characterGenderTextView.text = container.context.getString(R.string.character_search_gender, characterUI.gender)
 
         container.setOnDebouncedClickListener {
             itemListener.onCharacterClicked(characterUI)
         }
     }
 
+    @ExperimentalStdlibApi
+    private fun getCharacterDescription(context: Context) = with(characterUI) {
+        context.getString(R.string.character_search_birth_year, this.birthYear)
+    }
+
     inner class CharacterHolder : EpoxyHolder() {
-        lateinit var characterNameTextView: ImageView
+        lateinit var characterNameTextView: TextView
+        lateinit var characterBirthYearTextView: TextView
         lateinit var characterGenderTextView: TextView
         lateinit var container: View
 
         override fun bindView(itemView: View) {
             characterNameTextView = itemView.findViewById(R.id.characterNameTextView)
+            characterBirthYearTextView = itemView.findViewById(R.id.characterBirthYearTextView)
             characterGenderTextView = itemView.findViewById(R.id.characterGenderTextView)
             container = itemView
         }

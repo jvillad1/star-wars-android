@@ -27,8 +27,8 @@
     <dimen name="search_view_height">42dp</dimen>
 
     <!-- CardView -->
-    <dimen name="card_elevation">4dp</dimen>
-    <dimen name="card_corner_radius">4dp</dimen>
+    <dimen name="card_elevation">8dp</dimen>
+    <dimen name="card_corner_radius">8dp</dimen>
 
     <!-- List Item -->
     <dimen name="list_item_icon_height">24dp</dimen>

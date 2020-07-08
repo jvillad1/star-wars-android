@@ -1,6 +1,7 @@
 package com.jvillad.starwars.android.domain.search.usecase
 
 import com.jvillad.starwars.android.commons.data.Output
+import com.jvillad.starwars.android.domain.search.model.Character
 import com.jvillad.starwars.android.domain.search.repository.SearchRepository
 import com.jvillad.starwars.android.presentation.search.model.CharacterUI
 import javax.inject.Inject
@@ -12,5 +13,5 @@ import javax.inject.Inject
  */
 class SearchCharacters @Inject constructor(private val searchRepository: SearchRepository) {
 
-    suspend operator fun invoke(query: String): Output<List<CharacterUI>> = searchRepository.searchCharacters(query)
+    suspend operator fun invoke(name: String): Output<List<Character>> = searchRepository.searchCharacters(name)
 }

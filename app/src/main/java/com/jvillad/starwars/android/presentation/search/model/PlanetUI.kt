@@ -4,13 +4,12 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 /**
- * Data class for Character UI model.
+ *  Data class for Planet UI model.
  *
  * @author juan.villada
  */
 @Parcelize
-data class CharacterUI(
+data class PlanetUI(
     val name: String,
-    val birthYear: String,
-    val gender: String
+    val population: String
 ) : Parcelable

@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintDimensionRatio="H,1:1"
         app:lottie_autoPlay="true"
-        app:lottie_fileName="animations/baby_yoda.json"
+        app:lottie_rawRes="@raw/lightsaber"
         app:lottie_loop="true" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

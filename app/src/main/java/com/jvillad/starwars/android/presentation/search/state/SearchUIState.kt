@@ -9,4 +9,5 @@ import com.jvillad.starwars.android.presentation.search.model.CharacterUI
  */
 sealed class SearchUIState {
     data class SearchLoadedState(val characters: List<CharacterUI>) : SearchUIState()
+    object SearchClosedState : SearchUIState()
 }

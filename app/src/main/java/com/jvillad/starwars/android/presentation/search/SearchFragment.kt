@@ -3,17 +3,18 @@ package com.jvillad.starwars.android.presentation.search
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
-import android.view.ViewStub
 import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jvillad.starwars.android.R
-import com.jvillad.starwars.android.commons.extensions.*
+import com.jvillad.starwars.android.commons.extensions.hideKeyboard
+import com.jvillad.starwars.android.commons.extensions.observeFragment
 import com.jvillad.starwars.android.commons.presentation.state.UIState
 import com.jvillad.starwars.android.commons.presentation.ui.BaseFragment
 import com.jvillad.starwars.android.presentation.search.adapter.controller.CharactersController
 import com.jvillad.starwars.android.presentation.search.model.CharacterUI
+import com.jvillad.starwars.android.presentation.search.model.SearchDataWrapper
 import com.jvillad.starwars.android.presentation.search.state.SearchUIState
 import com.jvillad.starwars.android.presentation.search.viewmodel.SearchViewModel
 import kotlinx.android.synthetic.main.fragment_search.*
@@ -32,14 +33,9 @@ class SearchFragment : BaseFragment(R.layout.fragment_search), CharactersControl
     // Epoxy controller
     private val charactersController: CharactersController by lazy { CharactersController(this) }
 
-    // No Results found
-    private lateinit var noResultsViewStub: ViewStub
-    private var noResultsInflated: View? = null
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        noResultsViewStub = view.findViewById(R.id.emptyCharactersSearchViewStub)
         setupSearchView()
         setupRecyclerView()
 
@@ -81,10 +77,11 @@ class SearchFragment : BaseFragment(R.layout.fragment_search), CharactersControl
         Timber.d("setupRecyclerView")
         layoutManager = LinearLayoutManager(context)
         setController(charactersController)
+        charactersController.setData(SearchDataWrapper(showSearchInfoCard = true))
     }
 
     private fun onUIStateChange(uiState: UIState<SearchUIState>) = when (uiState) {
-        is UIState.Loading -> showLoading(uiState.message?.let { getString(it) })
+        is UIState.Loading -> showLoading(uiState.message)
         is UIState.Data -> showData(uiState.data)
         is UIState.Error -> {
             // TODO: Create ErrorBanner component
@@ -95,29 +92,32 @@ class SearchFragment : BaseFragment(R.layout.fragment_search), CharactersControl
         }
     }
 
+    private fun showLoading(message: Int?) {
+        Timber.d("showData")
+
+        charactersController.setData(SearchDataWrapper())
+        showLoading(message?.let { getString(it) })
+    }
+
     private fun showData(searchUIState: SearchUIState) {
         Timber.d("showData")
 
         hideLoading()
         when (searchUIState) {
             is SearchUIState.SearchLoadedState -> showCharacterSearchResults(searchUIState.characters)
+            is SearchUIState.SearchClosedState -> {
+                charactersController.setData(SearchDataWrapper(showSearchInfoCard = true))
+            }
         }
     }
 
     private fun showCharacterSearchResults(characterSearchResults: List<CharacterUI>) {
         Timber.d("showCharacterSearchResults")
-        if (characterSearchResults.isNotEmpty()) {
-            noResultsInflated?.gone()
-            charactersRecyclerView.visible()
-            charactersController.setData(characterSearchResults)
-        } else {
-            if (noResultsInflated == null) {
-                noResultsInflated = noResultsViewStub.inflate()
-            }
 
-            charactersRecyclerView.invisible()
-            charactersController.setData(listOf())
-            noResultsInflated?.visible()
+        if (characterSearchResults.isNotEmpty()) {
+            charactersController.setData(SearchDataWrapper(characterSearchResults))
+        } else {
+            charactersController.setData(SearchDataWrapper(showEmptyCharactersSearch = true))
         }
     }
 

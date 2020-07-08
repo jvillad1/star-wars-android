@@ -10,6 +10,7 @@ import com.jvillad.starwars.android.commons.presentation.state.NavigationProvide
 import com.jvillad.starwars.android.commons.presentation.state.UIState
 import com.jvillad.starwars.android.commons.presentation.state.UIStateProvider
 import com.jvillad.starwars.android.domain.search.usecase.SearchUseCases
+import com.jvillad.starwars.android.presentation.search.mapper.CharacterDomainToUI
 import com.jvillad.starwars.android.presentation.search.model.CharacterUI
 import com.jvillad.starwars.android.presentation.search.state.SearchNavigationState
 import com.jvillad.starwars.android.presentation.search.state.SearchUIState
@@ -46,15 +47,13 @@ class SearchViewModel @ViewModelInject constructor(
         uiStateMutableLiveData.value = newUIState
     }
 
-    fun searchCharacters(query: String) = viewModelScope.launch {
-        Timber.d("searchRecipes")
+    fun searchCharacters(name: String) = viewModelScope.launch {
+        Timber.d("searchCharacters")
         updateUIState(UIState.Loading())
 
-        fun getQueryString() = "%$query%"
-
-        when (val output = searchUseCases.searchCharacters(getQueryString())) {
+        when (val output = searchUseCases.searchCharacters(name)) {
             is Output.Success -> {
-                characterSearchResults = output.data
+                characterSearchResults = CharacterDomainToUI.map(output.data)
                 updateUIState(UIState.Data(SearchUIState.SearchLoadedState(characterSearchResults)))
             }
             is Output.Error -> updateUIState(UIState.Error())
@@ -62,6 +61,6 @@ class SearchViewModel @ViewModelInject constructor(
     }
 
     fun clearCharactersSearch() {
-        updateUIState(UIState.Data(SearchUIState.SearchLoadedState(characters)))
+        updateUIState(UIState.Data(SearchUIState.SearchClosedState))
     }
 }

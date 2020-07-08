@@ -1,12 +1,11 @@
 package com.jvillad.starwars.android.domain.search.model
 
 /**
- * Data class for Character domain model.
+ * Data class for Planet domain model.
  *
  * @author juan.villada
  */
-data class Character(
+data class Planet(
     val name: String,
-    val birthYear: String,
-    val gender: String
+    val population: String
 )

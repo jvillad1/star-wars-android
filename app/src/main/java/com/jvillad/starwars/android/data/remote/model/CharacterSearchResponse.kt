@@ -17,5 +17,5 @@ data class CharacterSearchResponse(
     @field:Json(name = "category")
     val category: String,
     @field:Json(name = "results")
-    val results: CharacterResponse
+    val results: List<CharacterResponse>
 )
