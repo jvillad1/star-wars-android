@@ -1,6 +1,5 @@
 package com.jvillad.starwars.android.presentation.search.adapter.model
 
-import android.content.Context
 import android.view.View
 import android.widget.TextView
 import com.airbnb.epoxy.EpoxyAttribute
@@ -36,11 +35,6 @@ abstract class CharacterItemModel : EpoxyModelWithHolder<CharacterHolder>() {
         container.setOnDebouncedClickListener {
             itemListener.onCharacterClicked(characterUI)
         }
-    }
-
-    @ExperimentalStdlibApi
-    private fun getCharacterDescription(context: Context) = with(characterUI) {
-        context.getString(R.string.character_search_birth_year, this.birthYear)
     }
 
     inner class CharacterHolder : EpoxyHolder() {
