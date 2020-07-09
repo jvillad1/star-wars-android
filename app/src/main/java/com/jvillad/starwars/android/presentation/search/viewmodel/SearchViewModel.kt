@@ -29,7 +29,6 @@ class SearchViewModel @ViewModelInject constructor(
     val uiStateLiveData = uiStateMutableLiveData.asLiveData()
 
     // Variables
-    private var characters: List<CharacterUI> = listOf()
     private var characterSearchResults: List<CharacterUI> = listOf()
 
     override fun updateUIState(newUIState: UIState<SearchUIState>) {

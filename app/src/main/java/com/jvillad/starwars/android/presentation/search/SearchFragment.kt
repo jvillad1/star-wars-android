@@ -97,9 +97,6 @@ class SearchFragment : BaseFragment(R.layout.fragment_search), CharactersControl
             // TODO: Create ErrorBanner component
             Timber.d("showErrorBanner")
         }
-        else -> {
-            // NO-OP
-        }
     }
 
     private fun showLoading(message: Int?) {
