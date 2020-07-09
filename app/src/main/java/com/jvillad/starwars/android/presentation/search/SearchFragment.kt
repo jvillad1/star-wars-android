@@ -6,12 +6,17 @@ import android.view.View
 import android.widget.TextView
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jvillad.starwars.android.R
 import com.jvillad.starwars.android.commons.extensions.hideKeyboard
 import com.jvillad.starwars.android.commons.extensions.observeFragment
 import com.jvillad.starwars.android.commons.presentation.state.UIState
 import com.jvillad.starwars.android.commons.presentation.ui.BaseFragment
+import com.jvillad.starwars.android.presentation.navigation.state.DetailsNavigationState
+import com.jvillad.starwars.android.presentation.navigation.state.NavigationState
+import com.jvillad.starwars.android.presentation.navigation.state.SearchNavigationState
+import com.jvillad.starwars.android.presentation.navigation.viewmodel.NavigationSharedViewModel
 import com.jvillad.starwars.android.presentation.search.adapter.controller.CharactersController
 import com.jvillad.starwars.android.presentation.search.model.CharacterUI
 import com.jvillad.starwars.android.presentation.search.model.SearchDataWrapper
@@ -28,10 +33,34 @@ import timber.log.Timber
 class SearchFragment : BaseFragment(R.layout.fragment_search), CharactersController.CharacterItemListener {
 
     // ViewModel
-    private val searchViewModel by activityViewModels<SearchViewModel>()
+    private val searchViewModel by viewModels<SearchViewModel>()
+    private val navigationSharedViewModel by activityViewModels<NavigationSharedViewModel>()
 
     // Epoxy controller
     private val charactersController: CharactersController by lazy { CharactersController(this) }
+
+    // Search text listener
+    private val queryTextListener = object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(query: String): Boolean {
+            Timber.d("onQueryTextSubmit: $query")
+            hideKeyboard()
+
+            return true
+        }
+
+        override fun onQueryTextChange(newText: String): Boolean {
+            Timber.d("onQueryTextChange: $newText")
+
+            if (newText.isEmpty()) {
+                searchViewModel.clearCharactersSearch()
+            } else {
+                searchViewModel.searchCharacters(newText)
+            }
+
+            return true
+        }
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -40,35 +69,16 @@ class SearchFragment : BaseFragment(R.layout.fragment_search), CharactersControl
         setupRecyclerView()
 
         // Listeners
-        characterSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                Timber.d("onQueryTextSubmit: $query")
-                hideKeyboard()
-
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String): Boolean {
-                Timber.d("onQueryTextChange: $newText")
-
-                if (newText.isEmpty()) {
-                    searchViewModel.clearCharactersSearch()
-                } else {
-                    searchViewModel.searchCharacters(newText)
-                }
-
-                return true
-            }
-        })
+        characterSearchView.setOnQueryTextListener(queryTextListener)
 
         observeFragment(searchViewModel.uiStateLiveData, ::onUIStateChange)
     }
 
     private fun setupSearchView() {
         Timber.d("setupSearchView")
-        val face: Typeface = Typeface.createFromAsset(requireContext().assets, "fonts/open_sans_regular.ttf")
-        (characterSearchView.findViewById<View>(androidx.appcompat.R.id.search_src_text) as TextView).apply {
-            typeface = face
+        val openSansRegularTypeface: Typeface = Typeface.createFromAsset(requireContext().assets, "fonts/open_sans_regular.ttf")
+        (characterSearchView.findViewById(androidx.appcompat.R.id.search_src_text) as TextView).apply {
+            typeface = openSansRegularTypeface
             textSize = 13F
         }
     }
@@ -122,6 +132,11 @@ class SearchFragment : BaseFragment(R.layout.fragment_search), CharactersControl
     }
 
     override fun onCharacterClicked(characterUI: CharacterUI) {
-        TODO("Not yet implemented")
+        hideKeyboard()
+        // TODO: Navigate to the CharacterDetailsFragment
+        navigationSharedViewModel.navigateTo(
+            SearchNavigationState.SearchFragment,
+            DetailsNavigationState.CharacterDetailsFragment
+        )
     }
 }

@@ -7,8 +7,10 @@ import androidx.navigation.findNavController
 import com.jvillad.starwars.android.R
 import com.jvillad.starwars.android.commons.extensions.observe
 import com.jvillad.starwars.android.commons.presentation.ui.BaseActivity
-import com.jvillad.starwars.android.presentation.search.state.SearchNavigationState
-import com.jvillad.starwars.android.presentation.search.viewmodel.SearchViewModel
+import com.jvillad.starwars.android.presentation.navigation.state.DetailsNavigationState
+import com.jvillad.starwars.android.presentation.navigation.state.NavigationState
+import com.jvillad.starwars.android.presentation.navigation.state.SearchNavigationState
+import com.jvillad.starwars.android.presentation.navigation.viewmodel.NavigationSharedViewModel
 import timber.log.Timber
 
 /**
@@ -20,7 +22,7 @@ import timber.log.Timber
 class HomeActivity : BaseActivity(R.layout.activity_home) {
 
     // ViewModel
-    private val searchViewModel by viewModels<SearchViewModel>()
+    private val navigationSharedViewModel by viewModels<NavigationSharedViewModel>()
 
     // Navigation
     private val searchNavController: NavController by lazy { findNavController(R.id.searchNavHostFragment) }
@@ -28,16 +30,16 @@ class HomeActivity : BaseActivity(R.layout.activity_home) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        observe(searchViewModel.navigationStateLiveData, ::onSearchNavigationChange)
+        observe(navigationSharedViewModel.navigationStateLiveData, ::onNavigationChange)
     }
 
-    private fun onSearchNavigationChange(navigationEntry: Pair<SearchNavigationState, SearchNavigationState>) {
+    private fun onNavigationChange(navigationEntry: Pair<NavigationState, NavigationState>) {
         Timber.d("onSearchNavigationChange")
 
         val (origin, destination) = navigationEntry
         when (destination) {
             is SearchNavigationState.SearchFragment -> showSearchFragment()
-            is SearchNavigationState.CharacterDetailsFragment -> showCharacterDetailsFragment()
+            is DetailsNavigationState.CharacterDetailsFragment -> showCharacterDetailsFragment()
         }
     }
 
@@ -48,6 +50,7 @@ class HomeActivity : BaseActivity(R.layout.activity_home) {
 
     private fun showCharacterDetailsFragment() {
         Timber.d("showCharacterDetailsFragment")
-        searchNavController.navigate(R.id.searchFragment)
+        // TODO: Add action to send navArgs to navigate to characterDetailsFragment
+        searchNavController.navigate(R.id.characterDetailsFragment)
     }
 }

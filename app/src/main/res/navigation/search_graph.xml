@@ -22,7 +22,7 @@
 
     <fragment
         android:id="@+id/characterDetailsFragment"
-        android:name="com.jvillad.starwars.android.presentation.search.CharacterDetailsFragment"
+        android:name="com.jvillad.starwars.android.presentation.details.CharacterDetailsFragment"
         tools:layout="@layout/fragment_character_details" >
 
         <action

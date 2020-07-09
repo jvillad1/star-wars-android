@@ -5,6 +5,7 @@ import com.jvillad.starwars.android.domain.search.repository.SearchRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityRetainedComponent
 import dagger.hilt.android.components.ApplicationComponent
 
 /**
@@ -18,7 +19,7 @@ import dagger.hilt.android.components.ApplicationComponent
         CharactersNetworkModule::class
     ]
 )
-@InstallIn(ApplicationComponent::class)
+@InstallIn(ActivityRetainedComponent::class)
 abstract class DataModule {
 
     @Binds

@@ -5,6 +5,7 @@ import com.jvillad.starwars.android.data.remote.CharactersApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityRetainedComponent
 import dagger.hilt.android.components.ApplicationComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -17,7 +18,7 @@ import javax.inject.Singleton
  * @author juan.villada
  */
 @Module(includes = [CoreNetworkModule::class])
-@InstallIn(ApplicationComponent::class)
+@InstallIn(ActivityRetainedComponent::class)
 object CharactersNetworkModule {
 
     @Provides
@@ -28,7 +29,6 @@ object CharactersNetworkModule {
     }
 
     @Provides
-    @Singleton
     internal fun providesRetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
             .baseUrl(API_BASE_URL)
