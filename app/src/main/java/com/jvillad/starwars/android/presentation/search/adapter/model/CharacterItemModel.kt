@@ -11,6 +11,7 @@ import com.jvillad.starwars.android.commons.extensions.setOnDebouncedClickListen
 import com.jvillad.starwars.android.presentation.search.adapter.controller.CharactersController.CharacterItemListener
 import com.jvillad.starwars.android.presentation.search.adapter.model.CharacterItemModel.CharacterHolder
 import com.jvillad.starwars.android.presentation.search.model.CharacterUI
+import java.util.*
 
 /**
  * EpoxyModelClass for the Character list.
@@ -30,7 +31,7 @@ abstract class CharacterItemModel : EpoxyModelWithHolder<CharacterHolder>() {
     override fun bind(holder: CharacterHolder) = with(holder) {
         characterNameTextView.text = characterUI.name
         characterBirthYearTextView.text = container.context.getString(R.string.character_search_birth_year, characterUI.birthYear)
-        characterGenderTextView.text = container.context.getString(R.string.character_search_gender, characterUI.gender)
+        characterGenderTextView.text = container.context.getString(R.string.character_search_gender, characterUI.gender.capitalize(Locale.ROOT))
 
         container.setOnDebouncedClickListener {
             itemListener.onCharacterClicked(characterUI)

@@ -8,5 +8,6 @@ package com.jvillad.starwars.android.domain.search.model
 data class Character(
     val name: String,
     val birthYear: String,
-    val gender: String
+    val gender: String,
+    val url: String
 )

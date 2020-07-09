@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    tools:background="@drawable/bg_star_wars_characters"
     tools:context=".presentation.search.SearchFragment">
 
     <androidx.appcompat.widget.SearchView

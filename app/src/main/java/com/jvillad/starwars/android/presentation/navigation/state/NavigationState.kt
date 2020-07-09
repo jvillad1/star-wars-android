@@ -1,5 +1,7 @@
 package com.jvillad.starwars.android.presentation.navigation.state
 
+import com.jvillad.starwars.android.presentation.search.model.CharacterUI
+
 /**
  * Class for wrapping the navigation state.
  *
@@ -18,5 +20,5 @@ sealed class SearchNavigationState : NavigationState() {
  * Details feature navigation state.
  */
 sealed class DetailsNavigationState : NavigationState() {
-    object CharacterDetailsFragment : DetailsNavigationState()
+    data class CharacterDetailsFragment(val characterUI: CharacterUI) : DetailsNavigationState()
 }

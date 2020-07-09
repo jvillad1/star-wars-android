@@ -4,6 +4,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jvillad.starwars.android.R
 import com.jvillad.starwars.android.commons.data.Output
 import com.jvillad.starwars.android.commons.extensions.asLiveData
 import com.jvillad.starwars.android.commons.presentation.state.UIState
@@ -44,7 +45,7 @@ class SearchViewModel @ViewModelInject constructor(
                 characterSearchResults = CharacterDomainToUI.map(output.data)
                 updateUIState(UIState.Data(SearchUIState.SearchLoadedState(characterSearchResults)))
             }
-            is Output.Error -> updateUIState(UIState.Error())
+            is Output.Error -> updateUIState(UIState.Error(R.string.general_error_message))
         }
     }
 

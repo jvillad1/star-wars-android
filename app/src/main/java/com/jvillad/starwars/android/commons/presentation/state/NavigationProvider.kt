@@ -8,4 +8,6 @@ package com.jvillad.starwars.android.commons.presentation.state
 interface NavigationProvider<in A> {
 
     fun navigateTo(origin: A, destination: A)
+
+    fun navigateBack(destination: A)
 }

@@ -2,6 +2,10 @@
     <!-- App Name -->
     <string name="app_name">Star Wars App</string>
 
+    <!-- Error Messages -->
+    <string name="general_error_title">Please try again</string>
+    <string name="general_error_message">We\'re having trouble loading data</string>
+
     <!-- Search View -->
     <string name="character_search_hint">Luke Skywalker</string>
     <string name="character_search_info_message">Use the search bar to find your favorite <b>Star Wars</b> Characters by name and learn more about them</string>

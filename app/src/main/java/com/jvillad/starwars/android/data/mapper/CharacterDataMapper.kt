@@ -17,7 +17,8 @@ object CharacterRemoteToDomain : BaseMapper<CharacterResponse, Character> {
         return Character(
             name = type.name,
             birthYear = type.birthYear,
-            gender = type.gender
+            gender = type.gender,
+            url = type.url
         )
     }
 }

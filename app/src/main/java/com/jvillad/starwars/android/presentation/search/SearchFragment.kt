@@ -13,6 +13,7 @@ import com.jvillad.starwars.android.commons.extensions.hideKeyboard
 import com.jvillad.starwars.android.commons.extensions.observeFragment
 import com.jvillad.starwars.android.commons.presentation.state.UIState
 import com.jvillad.starwars.android.commons.presentation.ui.BaseFragment
+import com.jvillad.starwars.android.commons.presentation.widget.ErrorBannerView
 import com.jvillad.starwars.android.presentation.navigation.state.DetailsNavigationState
 import com.jvillad.starwars.android.presentation.navigation.state.NavigationState
 import com.jvillad.starwars.android.presentation.navigation.state.SearchNavigationState
@@ -30,7 +31,7 @@ import timber.log.Timber
  *
  * @author juan.villada
  */
-class SearchFragment : BaseFragment(R.layout.fragment_search), CharactersController.CharacterItemListener {
+class SearchFragment : BaseFragment(R.layout.fragment_search), CharactersController.CharacterItemListener, ErrorBannerView.ErrorBannerListener {
 
     // ViewModel
     private val searchViewModel by viewModels<SearchViewModel>()
@@ -60,7 +61,6 @@ class SearchFragment : BaseFragment(R.layout.fragment_search), CharactersControl
             return true
         }
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -94,8 +94,13 @@ class SearchFragment : BaseFragment(R.layout.fragment_search), CharactersControl
         is UIState.Loading -> showLoading(uiState.message)
         is UIState.Data -> showData(uiState.data)
         is UIState.Error -> {
-            // TODO: Create ErrorBanner component
-            Timber.d("showErrorBanner")
+            showErrorBanner(
+                titleResId = R.string.general_error_title,
+                messageResId = uiState.message,
+                withRetry = false,
+                withDismiss = true,
+                errorBannerListener = this
+            )
         }
     }
 
@@ -130,10 +135,19 @@ class SearchFragment : BaseFragment(R.layout.fragment_search), CharactersControl
 
     override fun onCharacterClicked(characterUI: CharacterUI) {
         hideKeyboard()
-        // TODO: Navigate to the CharacterDetailsFragment
+
+        // Clean search
+        searchViewModel.uiStateLiveData.removeObservers(this.viewLifecycleOwner)
+
+        // Navigate to CharacterDetails
         navigationSharedViewModel.navigateTo(
             SearchNavigationState.SearchFragment,
-            DetailsNavigationState.CharacterDetailsFragment
+            DetailsNavigationState.CharacterDetailsFragment(characterUI)
         )
+    }
+
+    override fun onErrorBannerDismiss() {
+        super.onErrorBannerDismiss()
+        dismissErrorBanner()
     }
 }

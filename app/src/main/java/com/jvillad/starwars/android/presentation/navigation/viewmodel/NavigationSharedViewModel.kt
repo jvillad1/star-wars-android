@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jvillad.starwars.android.commons.extensions.asLiveData
 import com.jvillad.starwars.android.commons.presentation.state.NavigationProvider
+import com.jvillad.starwars.android.commons.presentation.state.UIState
 import com.jvillad.starwars.android.presentation.navigation.state.NavigationState
 
 /**
@@ -15,10 +16,14 @@ import com.jvillad.starwars.android.presentation.navigation.state.NavigationStat
 class NavigationSharedViewModel @ViewModelInject constructor() : ViewModel(), NavigationProvider<NavigationState> {
 
     // Navigation state LiveData
-    private val navigationStateMutableLiveData = MutableLiveData<Pair<NavigationState, NavigationState>>()
+    private val navigationStateMutableLiveData = MutableLiveData<Pair<NavigationState?, NavigationState>>()
     val navigationStateLiveData = navigationStateMutableLiveData.asLiveData()
 
     override fun navigateTo(origin: NavigationState, destination: NavigationState) {
         navigationStateMutableLiveData.value = Pair(origin, destination)
+    }
+
+    override fun navigateBack(destination: NavigationState) {
+        navigationStateMutableLiveData.value = Pair(null, destination)
     }
 }

@@ -46,7 +46,9 @@ class SearchViewModelTest {
     fun setup() {
         Dispatchers.setMain(testDispatcher)
         MockKAnnotations.init(this)
+
         searchViewModel = SearchViewModel(searchUseCases)
+        searchViewModel.uiStateLiveData.observeForever {}
     }
 
     @ExperimentalCoroutinesApi
@@ -56,20 +58,18 @@ class SearchViewModelTest {
         testDispatcher.cleanupTestCoroutines()
     }
 
-    @ExperimentalCoroutinesApi
     @Test
     fun `Success with SearchLoadedState when searchCharacters`() {
         // Given
         val listOfCharacters = listOf(
-            Character(CHARACTER_1_NAME, CHARACTER_1_BIRTH_YEAR, CHARACTER_1_GENDER),
-            Character(CHARACTER_2_NAME, CHARACTER_2_BIRTH_YEAR, CHARACTER_2_GENDER),
-            Character(CHARACTER_3_NAME, CHARACTER_3_BIRTH_YEAR, CHARACTER_3_GENDER)
+            Character(CHARACTER_1_NAME, CHARACTER_1_BIRTH_YEAR, CHARACTER_1_GENDER, ""),
+            Character(CHARACTER_2_NAME, CHARACTER_2_BIRTH_YEAR, CHARACTER_2_GENDER, ""),
+            Character(CHARACTER_3_NAME, CHARACTER_3_BIRTH_YEAR, CHARACTER_3_GENDER, "")
         )
 
         coEvery { searchUseCases.searchCharacters(SEARCH_SUCCESS_QUERY) } returns Output.success(listOfCharacters)
 
         // When
-        searchViewModel.uiStateLiveData.observeForever {}
         searchViewModel.searchCharacters(SEARCH_SUCCESS_QUERY)
 
         // Then
@@ -86,7 +86,6 @@ class SearchViewModelTest {
         coEvery { searchUseCases.searchCharacters(SEARCH_ERROR_QUERY) } returns Output.error("Error retrieving the Characters Search")
 
         // When
-        searchViewModel.uiStateLiveData.observeForever {}
         searchViewModel.searchCharacters(SEARCH_ERROR_QUERY)
 
         // Then

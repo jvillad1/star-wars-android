@@ -17,7 +17,8 @@ object CharacterDomainToUI : BaseMapper<List<Character>, List<CharacterUI>> {
             CharacterUI(
                 name = it.name,
                 birthYear = it.birthYear,
-                gender = it.gender
+                gender = it.gender,
+                url = it.url
             )
         }
     }

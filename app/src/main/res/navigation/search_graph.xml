@@ -8,26 +8,34 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.jvillad.starwars.android.presentation.search.SearchFragment"
-        tools:layout="@layout/fragment_search" >
+        tools:layout="@layout/fragment_search">
 
         <action
             android:id="@+id/action_searchFragment_to_characterDetailsFragment"
             app:destination="@id/characterDetailsFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/fade_out" />
 
     </fragment>
 
     <fragment
         android:id="@+id/characterDetailsFragment"
         android:name="com.jvillad.starwars.android.presentation.details.CharacterDetailsFragment"
-        tools:layout="@layout/fragment_character_details" >
+        tools:layout="@layout/fragment_character_details">
+
+        <argument
+            android:name="characterUI"
+            app:argType="com.jvillad.starwars.android.presentation.search.model.CharacterUI" />
 
         <action
             android:id="@+id/action_characterDetailsFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
+            app:destination="@id/searchFragment"
+            app:enterAnim="@anim/slide_in_from_left"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/slide_in_from_right"
+            app:popExitAnim="@anim/fade_out" />
 
     </fragment>
 
