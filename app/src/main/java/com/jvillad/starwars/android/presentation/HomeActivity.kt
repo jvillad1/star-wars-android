@@ -21,7 +21,6 @@ import timber.log.Timber
  *
  * @author juan.villada
  */
-
 class HomeActivity : BaseActivity(R.layout.activity_home) {
 
     // ViewModel

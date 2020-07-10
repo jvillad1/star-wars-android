@@ -2,6 +2,7 @@ package com.jvillad.starwars.android.presentation.search.viewmodel
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ServiceLifecycleDispatcher
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jvillad.starwars.android.R

@@ -1,6 +1,7 @@
 package com.jvillad.starwars.android.presentation.search.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.jvillad.starwars.android.R
 import com.jvillad.starwars.android.commons.data.Output
 import com.jvillad.starwars.android.commons.presentation.state.UIState
 import com.jvillad.starwars.android.domain.search.model.Character
@@ -92,7 +93,7 @@ class SearchViewModelTest {
         assert(searchViewModel.uiStateLiveData.value != null)
 
         when (val uiState = searchViewModel.uiStateLiveData.value) {
-            is UIState.Error -> assert(uiState.message == null)
+            is UIState.Error -> assert(uiState.message == R.string.general_error_message)
         }
     }
 
