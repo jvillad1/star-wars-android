@@ -35,4 +35,3 @@ The project is using Clean Architecture with packages presentation, domain and d
 
 * Juan Camilo Villada 
 * jvillad1@gmail.com
-

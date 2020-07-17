@@ -37,7 +37,7 @@ class SearchViewModelTest {
     @MockK
     lateinit var searchUseCases: SearchUseCases
 
-    lateinit var searchViewModel: SearchViewModel
+    private lateinit var searchViewModel: SearchViewModel
 
     @ExperimentalCoroutinesApi
     private val testDispatcher = TestCoroutineDispatcher()
@@ -82,7 +82,7 @@ class SearchViewModelTest {
     }
 
     @Test
-    fun `Error with null message when searchCharacters`() {
+    fun `Error with correct message when searchCharacters`() {
         // Given
         coEvery { searchUseCases.searchCharacters(SEARCH_ERROR_QUERY) } returns Output.error("Error retrieving the Characters Search")
 
