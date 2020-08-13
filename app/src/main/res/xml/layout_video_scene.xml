@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="3000">
+
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+
+        <Constraint android:id="@+id/view2">
+
+            <CustomAttribute
+                motion:attributeName="backgroundColor"
+                motion:customColorValue="@color/colorGray" />
+
+        </Constraint>
+
+    </ConstraintSet>
+
+    <ConstraintSet
+        android:id="@+id/end"
+        motion:deriveConstraintsFrom="@id/start">
+
+        <Constraint android:id="@+id/view2">
+
+            <Layout
+                android:layout_width="wrap_content"
+                android:layout_height="128dp"
+                motion:layout_constraintBottom_toBottomOf="parent"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintTop_toTopOf="parent" />
+
+            <Transform
+                android:rotation="50"
+                android:translationZ="80dp" />
+
+            <PropertySet android:visibility="invisible" />
+
+            <Motion motion:pathMotionArc="none" />
+
+            <CustomAttribute
+                motion:attributeName="backgroundColor"
+                motion:customColorValue="?colorPrimary" />
+
+        </Constraint>
+
+    </ConstraintSet>
+
+</MotionScene>

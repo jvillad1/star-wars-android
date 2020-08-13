@@ -4,6 +4,7 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -70,6 +71,15 @@ class SearchFragment : BaseFragment(R.layout.fragment_search), CharactersControl
 
         // Listeners
         characterSearchView.setOnQueryTextListener(queryTextListener)
+        charactersRecyclerView.onFlingListener = RecyclerViewSwipeListener(true, object : RecyclerViewSwipeListener.OnSwipeListener {
+            override fun onSwipeUp() {
+                Timber.d("onSwipeUp: Should do something with MotionLayout")
+            }
+
+            override fun onSwipeDown() {
+                Timber.d("onSwipeDown: Should do something with MotionLayout")
+            }
+        })
 
         observeFragment(searchViewModel.uiStateLiveData, ::onUIStateChange)
     }

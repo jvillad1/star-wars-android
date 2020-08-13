@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     style="@style/CardView.Light"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -13,16 +12,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_normal"
-        android:layout_marginEnd="@dimen/margin_normal"
         android:layout_marginTop="@dimen/margin_medium"
+        android:layout_marginEnd="@dimen/margin_normal"
         android:layout_marginBottom="@dimen/margin_medium">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
-            android:ellipsize="end"
             android:layout_marginEnd="@dimen/margin_large"
+            android:ellipsize="end"
             android:text="@string/character_search_info_message"
             android:textColor="@color/colorSecondaryText"
             app:layout_constraintEnd_toStartOf="@id/characterImageView"
