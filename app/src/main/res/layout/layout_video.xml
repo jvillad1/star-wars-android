@@ -2,25 +2,14 @@
 <androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     app:motionDebug="SHOW_PROGRESS"
     app:layoutDescription="@xml/layout_video_scene">
 
     <View
-        android:id="@+id/view"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="58dp"
-        android:background="@android:color/holo_blue_dark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/view2"
-        android:layout_width="200dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="58dp"
+        android:id="@+id/videoPlayerView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/video_player_height"
         android:background="@android:color/holo_green_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

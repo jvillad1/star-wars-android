@@ -17,6 +17,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:queryHint="@string/character_search_hint" />
 
+    <include
+        android:id="@+id/motionContainer"
+        layout="@layout/layout_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        app:layout_constraintTop_toBottomOf="@id/characterSearchView" />
+
     <com.airbnb.epoxy.EpoxyRecyclerView
         android:id="@+id/charactersRecyclerView"
         android:layout_width="match_parent"
@@ -27,7 +35,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/characterSearchView"
+        app:layout_constraintTop_toBottomOf="@id/motionContainer"
         tools:listitem="@layout/item_character" />
 
     <ViewStub
